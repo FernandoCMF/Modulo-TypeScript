@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "name": "aula-8",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "tsc-watch": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
