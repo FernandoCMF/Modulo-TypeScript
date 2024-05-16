@@ -1,16 +1,44 @@
-var spaceShip = [];
-var optionMenu = 0;
-while (optionMenu !== 5) {
-    var spaceshipName = prompt('Escolha umas das opcoes\n 1- Registrar nova nave.\n 2- Adicionar um membro da tripulacao.\n 3- Enviar nave em missao.\n 4- Listar naves registradas.\n 5- Encerrar');
-}
-var createSpaceship = function (name, pilot, crewLimit) {
-    var spacechip = {
-        name: name,
-        pilot: pilot,
-        crewLimit: crewLimit,
-        crew: [], //Sera? ou crew: []
+let AllSpaceShip = [];
+const addSpaceship = (name, pilot, crewLimit) => {
+    const spacechip = {
+        name,
+        pilot,
+        crewLimit,
+        crew: [],
         inMission: false
     };
+    AllSpaceShip.push(spacechip);
+    alert(`Nova nave ${spacechip.name} foi adicionada com sucesso`);
+};
+const findSpaceship = (name) => {
+    let spacechip = {
+        name: String,
+        pilot: String,
+        crewLimit: String,
+        crew: String, //Sera? ou crew: []
+        inMission: Boolean
+    };
+    spacechip = AllSpaceShip.find(ship => ship.nmae === name);
     return spacechip;
 };
-console.log(createSpaceship('Nave1', 'Fernando', 20));
+const addCrewMember = (member, spacechip) => {
+    if (spacechip.crew.length >= spacechip.crewLimit) {
+        alert(`${member} nao pode ser adicionado a tripulacao. Limite atingido`);
+    }
+    else {
+        spacechip.crew.push(member);
+        alert(`${member} foi adicionado a tripulacao da ${spacechip.name}`);
+    }
+};
+let optionMenu = 0;
+while (optionMenu !== 5) {
+    const spaceshipName = prompt('Escolha umas das opcoes\n 1- Registrar nova nave.\n 2- Adicionar um membro da tripulacao.\n 3- Enviar nave em missao.\n 4- Listar naves registradas.\n 5- Encerrar');
+    optionMenu = parseInt(spaceshipName);
+    switch (optionMenu) {
+        case 1:
+            console.log(AllSpaceShip);
+            break;
+        case 2:
+            break;
+    }
+}
