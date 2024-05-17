@@ -2,7 +2,7 @@ let AllSpaceShip = []
 
 
 const addSpaceship = (name:string, pilot:string, crewLimit:number) => {
-    const spacechip = {
+    const spaceship = {
         name,
         pilot,
         crewLimit,
@@ -10,17 +10,17 @@ const addSpaceship = (name:string, pilot:string, crewLimit:number) => {
         inMission: false
     }
 
-    AllSpaceShip.push(spacechip);
-    alert(`Nova nave ${spacechip.name} foi adicionada com sucesso`)
+    AllSpaceShip.push(spaceship);
+    alert(`Nova nave ${spaceship.name} foi adicionada com sucesso`)
 }
 
-const findSpaceship = (name:string) => {
-    let spacechip = {
-        name: String,
-        pilot: String,
-        crewLimit: String,
-        crew: String, //Sera? ou crew: []
-        inMission: Boolean
+const findSpaceship = (name: string) => {
+    let spacechip: {
+        name: string,
+        pilot: string,
+        crewLimit: number,
+        crew: string[], //Sera? ou crew: []
+        inMission: boolean
     }
 
     spacechip = AllSpaceShip.find(ship => ship.nmae === name)
@@ -30,12 +30,12 @@ const findSpaceship = (name:string) => {
 }
 
 
-const addCrewMember = (member: string, spacechip:{name:string, crewLimit:number, crew: string[]}) => {
-    if(spacechip.crew.length >= spacechip.crewLimit){
+const addCrewMember = (member: string, spaceship: { name: string, crewLimit: number, crew: string[] }) => {
+    if(spaceship.crew.length >= spaceship.crewLimit){
         alert(`${member} nao pode ser adicionado a tripulacao. Limite atingido`)
     }else{
-        spacechip.crew.push(member);
-        alert(`${member} foi adicionado a tripulacao da ${spacechip.name}`)
+        spaceship.crew.push(member);
+        alert(`${member} foi adicionado a tripulacao da ${spaceship.name}`)
     }
 }
 
@@ -60,6 +60,34 @@ const createNewSpaceship = () => {
     if(confirmation){
         addSpaceship(name, pilot, crewLimit)
         alert('nave adicionada com sucesso')
+    }
+}
+
+const addNewMemberInSpaceship = () => {
+    const member = prompt('Qual o nome do novo tripulante?')
+    const spaceshipName = prompt(`Para qual nave o ${member} devera ser adicionado?`)
+
+    const spaceship = findSpaceship(spaceshipName)
+
+    if(spaceship){
+        const confirmation = confirm(`Confirma a inclusao do ${member} para a nave ${spaceship.name}`)
+
+        if(confirmation){
+            addCrewMember(member, spaceship)
+        }
+    }
+
+}
+
+const sendSpaceshipInMisson = () => {
+    const spaceshipName = prompt('Informe o nome da nave para enviar em missao')
+
+    const spaceship = findSpaceship(spaceshipName)
+
+    const confirmation = confirm(`Confirma e envio da nave ${spaceship.name} para missao`)
+
+    if(confirmation){
+        sendInMission(spaceship)
     }
 }
 
