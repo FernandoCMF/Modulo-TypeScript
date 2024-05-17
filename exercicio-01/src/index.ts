@@ -50,7 +50,18 @@ const sendInMission = (spacechip:{name:string, crewLimit:number, crew: string[],
     }
 }
 
+const createNewSpaceship = () => {
+    const name = prompt(`Informe o nome da nave: `)
+    const pilot = prompt(`Informe o nome do piloto da nave ${name}`)
+    const crewLimit = Number.parseInt(prompt(`Informe a quantidade de tripulante da nave`));
 
+    const confirmation = confirm(`Confirmar o registro \nnave: ${name} \n o piloto ${pilot} \nquantidade da tripulacao: ${crewLimit}`)
+
+    if(confirmation){
+        addSpaceship(name, pilot, crewLimit)
+        alert('nave adicionada com sucesso')
+    }
+}
 
 let optionMenu = 0;
 
@@ -60,8 +71,7 @@ while(optionMenu !== 5){
     optionMenu = parseInt(spaceshipName)
     switch(optionMenu) {
         case 1:
-           
-            console.log(AllSpaceShip)
+            createNewSpaceship
             break;
         case 2:
            
