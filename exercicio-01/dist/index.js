@@ -30,6 +30,18 @@ const addCrewMember = (member, spacechip) => {
         alert(`${member} foi adicionado a tripulacao da ${spacechip.name}`);
     }
 };
+const sendInMission = (spacechip) => {
+    if (spacechip.inMission) {
+        alert(`${spacechip.name} Nao pode ser enviado a missao. Nave ja em missao`);
+    }
+    else if (spacechip.crew.length < Math.floor(spacechip.crewLimit / 3)) {
+        alert(`${spacechip.name} Nao pode ser enviado a missao. Tripulacao insuficiente`);
+    }
+    else {
+        spacechip.inMission = true;
+        alert(`${spacechip.name} Enviada para a missao.`);
+    }
+};
 let optionMenu = 0;
 while (optionMenu !== 5) {
     const spaceshipName = prompt('Escolha umas das opcoes\n 1- Registrar nova nave.\n 2- Adicionar um membro da tripulacao.\n 3- Enviar nave em missao.\n 4- Listar naves registradas.\n 5- Encerrar');

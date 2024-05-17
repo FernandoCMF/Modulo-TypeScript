@@ -39,6 +39,17 @@ const addCrewMember = (member: string, spacechip:{name:string, crewLimit:number,
     }
 }
 
+const sendInMission = (spacechip:{name:string, crewLimit:number, crew: string[], inMission: boolean},) => {
+    if(spacechip.inMission){
+        alert(`${spacechip.name} Nao pode ser enviado a missao. Nave ja em missao`)
+    }else if(spacechip.crew.length < Math.floor(spacechip.crewLimit / 3)){
+        alert(`${spacechip.name} Nao pode ser enviado a missao. Tripulacao insuficiente`)
+    } else{
+        spacechip.inMission = true
+        alert(`${spacechip.name} Enviada para a missao.`)
+    }
+}
+
 
 
 let optionMenu = 0;
