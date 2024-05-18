@@ -1,33 +1,27 @@
 let AllSpaceShip = [];
 const addSpaceship = (name, pilot, crewLimit) => {
-    const spacechip = {
+    const spaceship = {
         name,
         pilot,
         crewLimit,
         crew: [],
         inMission: false
     };
-    AllSpaceShip.push(spacechip);
-    alert(`Nova nave ${spacechip.name} foi adicionada com sucesso`);
+    AllSpaceShip.push(spaceship);
+    alert(`Nova nave ${spaceship.name} foi adicionada com sucesso`);
 };
 const findSpaceship = (name) => {
-    let spacechip = {
-        name: String,
-        pilot: String,
-        crewLimit: String,
-        crew: String, //Sera? ou crew: []
-        inMission: Boolean
-    };
+    let spacechip;
     spacechip = AllSpaceShip.find(ship => ship.nmae === name);
     return spacechip;
 };
-const addCrewMember = (member, spacechip) => {
-    if (spacechip.crew.length >= spacechip.crewLimit) {
+const addCrewMember = (member, spaceship) => {
+    if (spaceship.crew.length >= spaceship.crewLimit) {
         alert(`${member} nao pode ser adicionado a tripulacao. Limite atingido`);
     }
     else {
-        spacechip.crew.push(member);
-        alert(`${member} foi adicionado a tripulacao da ${spacechip.name}`);
+        spaceship.crew.push(member);
+        alert(`${member} foi adicionado a tripulacao da ${spaceship.name}`);
     }
 };
 const sendInMission = (spacechip) => {
@@ -42,15 +36,71 @@ const sendInMission = (spacechip) => {
         alert(`${spacechip.name} Enviada para a missao.`);
     }
 };
+const createNewSpaceship = () => {
+    const name = prompt(`Informe o nome da nave: `);
+    const pilot = prompt(`Informe o nome do piloto da nave ${name}`);
+    const crewLimit = Number.parseInt(prompt(`Informe a quantidade de tripulante da nave`));
+    const confirmation = confirm(`Confirmar o registro \nnave: ${name} \n o piloto ${pilot} \nquantidade da tripulacao: ${crewLimit}`);
+    if (confirmation) {
+        addSpaceship(name, pilot, crewLimit);
+        alert('nave adicionada com sucesso');
+    }
+};
+const addNewMemberInSpaceship = () => {
+    const member = prompt('Qual o nome do novo tripulante?');
+    const spaceshipName = prompt(`Para qual nave o ${member} devera ser adicionado?`);
+    const spaceship = findSpaceship(spaceshipName);
+    if (spaceship) {
+        const confirmation = confirm(`Confirma a inclusao do ${member} para a nave ${spaceship.name}`);
+        if (confirmation) {
+            addCrewMember(member, spaceship);
+        }
+    }
+};
+const sendSpaceshipInMisson = () => {
+    const spaceshipName = prompt('Informe o nome da nave para enviar em missao');
+    const spaceship = findSpaceship(spaceshipName);
+    const confirmation = confirm(`Confirma e envio da nave ${spaceship.name} para missao`);
+    if (confirmation) {
+        sendInMission(spaceship);
+    }
+};
+const registeredSpaceships = () => {
+    let list = 'Naves registradas:\n';
+    AllSpaceShip.forEach((spacechip) => {
+        list += `
+            Nave:${spacechip.name}
+            Pilot:${spacechip.pilot}
+            Em missao? ${spacechip.inMission ? 'sim' : 'nao'}
+            Tamanho maximo da tripulacao: ${spacechip.crewLimit}
+            Triupulante: ${spacechip.crew.length}
+        `;
+        spacechip.crew.forEach((member) => {
+            list += `   - ${member}\n`;
+        });
+    });
+    alert(list);
+};
 let optionMenu = 0;
 while (optionMenu !== 5) {
     const spaceshipName = prompt('Escolha umas das opcoes\n 1- Registrar nova nave.\n 2- Adicionar um membro da tripulacao.\n 3- Enviar nave em missao.\n 4- Listar naves registradas.\n 5- Encerrar');
     optionMenu = parseInt(spaceshipName);
     switch (optionMenu) {
         case 1:
-            console.log(AllSpaceShip);
+            createNewSpaceship();
             break;
         case 2:
+            addNewMemberInSpaceship();
             break;
+        case 3:
+            sendSpaceshipInMisson();
+            break;
+        case 4:
+            registeredSpaceships();
+            break;
+        case 5:
+            alert('Sistema encerrado');
+        default:
+            alert('Opcao invalida! Retornando ao painel principal...');
     }
 }

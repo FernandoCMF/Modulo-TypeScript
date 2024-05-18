@@ -91,6 +91,34 @@ const sendSpaceshipInMisson = () => {
     }
 }
 
+const registeredSpaceships = () => {
+    let list = 'Naves registradas:\n'
+
+    AllSpaceShip.forEach((spacechip: {
+        name: string,
+        pilot: string,
+        crewLimit: number,
+        crew: string[],
+        inMission: boolean
+    })=>{
+        list += `
+            Nave:${spacechip.name}
+            Pilot:${spacechip.pilot}
+            Em missao? ${spacechip.inMission ? 'sim' : 'nao'}
+            Tamanho maximo da tripulacao: ${spacechip.crewLimit}
+            Triupulante: ${spacechip.crew.length}
+        `
+
+        spacechip.crew.forEach((member)=>{
+            list += `   - ${member}\n`
+        })
+
+    })
+    alert(list)
+
+}
+
+
 let optionMenu = 0;
 
 while(optionMenu !== 5){
@@ -99,11 +127,21 @@ while(optionMenu !== 5){
     optionMenu = parseInt(spaceshipName)
     switch(optionMenu) {
         case 1:
-            createNewSpaceship
+            createNewSpaceship()
             break;
         case 2:
-           
+            addNewMemberInSpaceship()
             break;
+        case 3:
+            sendSpaceshipInMisson()
+            break;
+        case 4:
+            registeredSpaceships()
+            break;
+        case 5:
+            alert('Sistema encerrado')
+        default:
+            alert('Opcao invalida! Retornando ao painel principal...')
     }
 }
 
