@@ -9,7 +9,7 @@ let AllPlanets: {
     satellite: satelliteType
 }[] = [];
 
-const addPlanets = (name: string, coordinates: coordinatesPlanet, situation: situationPlanet, satellite: satelliteType = []) => {
+const dataPlanets = (name: string, coordinates: coordinatesPlanet, situation: situationPlanet, satellite: satelliteType = []) => {
     const planet = {
         name,
         coordinates,
@@ -26,6 +26,15 @@ const findPlanet = (name: string) => {
     return AllPlanets.find(planets => planets.name === name);
 };
 
-addPlanets('Terra',[10,10,10,10], 'habitado', ['1','2'])
+dataPlanets('Terra',[10,10,10,10], 'habitado', ['1','2'])
 
 findPlanet('Terra')
+
+
+const addPlanet = () => {
+    let name = prompt('Informe o nome do planeta')
+    let coordinates: coordinatesPlanet
+    coordinates = [0,0,0,0]
+    coordinates = parseInt(prompt('Informe as coordenadas: '))
+    let situation = prompt()
+}
