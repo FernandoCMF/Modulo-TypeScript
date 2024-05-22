@@ -23,7 +23,7 @@ const findSpaceship = (name: string) => {
         inMission: boolean
     }
 
-    spacechip = AllSpaceShip.find(ship => ship.nmae === name)
+    spacechip = AllSpaceShip.find(ship => ship.name === name)
 
     return spacechip
 
