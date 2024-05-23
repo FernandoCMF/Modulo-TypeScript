@@ -6,7 +6,7 @@ type Planet = {
     coordinates: PlanetCoordinates,
     situation: PlanetSituation,
     satellites: string[]
-}
+};
 
 const planets: Planet[] = []
 
@@ -75,18 +75,20 @@ const promptValidSituation = () => {
     return situation
 }
 
-const promptValidPlanet = (callback: (planet:Planet)=>void) => {
-    const planetName = prompt('Informe o nome para o planeta:')
+const promptValidPlanet = (callbackfn: (planet:Planet)=>void) => {
+    let planetName: any
+    planetName = prompt('Informe o nome para o planeta:')
     const planet = resFindPlanet(planetName)
 
     if(planet){
-        callback(planet)
+        callbackfn(planet)
     }else {
         alert('Planeta nao encontrado. Retornando ao menu')
     }
 }
 
 const firstMenuOption = () => {
+    
     const name = prompt('Informe um nome para o planeta:')
     const coordinateA = prompt('Informe a primeira coordenada:')
     const coordinateB = prompt('Informe a segunda coordenada:')
@@ -129,10 +131,7 @@ const  fifthMenuOption = () => {
     let list = 'Planetas:\n'
 
     planets.forEach(planet => {
-      // Repare que as tuplas são uma forma fácil de permitir a
-      // desestruturação com qualquer nome nas variáveis.
-      // As variáveis a seguir podem ter qualquer nome pois a
-      // tupla segue um padrão fixo.
+     
       const [a, b, c, d] = planet.coordinates
   
       list += `
