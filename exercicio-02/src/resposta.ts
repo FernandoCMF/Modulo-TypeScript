@@ -72,7 +72,7 @@ const promptValidSituation = () => {
         }
     }
 
-    return situation
+    return situation!
 }
 
 const promptValidPlanet = (callbackfn: (planet:Planet)=>void) => {
@@ -90,10 +90,10 @@ const promptValidPlanet = (callbackfn: (planet:Planet)=>void) => {
 const firstMenuOption = () => {
     
     const name = prompt('Informe um nome para o planeta:')
-    const coordinateA = prompt('Informe a primeira coordenada:')
-    const coordinateB = prompt('Informe a segunda coordenada:')
-    const coordinateC = prompt('Informe a terceira coordenada:')
-    const coordinateD = prompt('Informe a quarta coordenada:')
+    const coordinateA = Number(prompt('Informe a primeira coordenada:'))
+    const coordinateB = Number(prompt('Informe a segunda coordenada:'))
+    const coordinateC = Number(prompt('Informe a terceira coordenada:'))
+    const coordinateD = Number(prompt('Informe a quarta coordenada:'))
 
     const situation = promptValidSituation()
 
@@ -102,7 +102,7 @@ const firstMenuOption = () => {
         Situação: ${situation}`)
 
   if (confirmation) {
-    addPlanet(name, [coordinateA, coordinateB, coordinateC, coordinateD], situation)
+    addPlanet(name!, [coordinateA, coordinateB, coordinateC, coordinateD], situation)
   }
 }
 
@@ -116,15 +116,15 @@ const secondMenuOption = () => {
 const thirdMenuOption = () => {
     promptValidPlanet(planet => {
         const satellite = prompt('Informe o nome do satélite a ser adicionado:')
-        addSatellite(satellite, planet)
+        addSatellite(satellite!, planet)
       })
 }
 
 const fourthMenuOption = () => {
-    promptValidPlanet(planet => {
-        const satellite = prompt('Informe o nome do satélite a ser removido:')
-        removeSatellite(satellite, planet)
-      })
+  promptValidPlanet(planet => {
+      const satellite = prompt('Informe o nome do satélite a ser removido:');
+      resRemoveSatellite(satellite!, planet);
+  });
 }
 
 const  fifthMenuOption = () => {
@@ -163,7 +163,7 @@ while (userOption !== 6) {
     6 - Sair
   `
 
-  userOption = Number.parseInt(prompt(menu))
+  userOption = Number.parseInt(prompt(menu)!)
 
   switch (userOption) {
     case 1:
