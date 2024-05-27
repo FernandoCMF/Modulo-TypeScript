@@ -1,0 +1,20 @@
+{
+  "name": "exercicio-02",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.11",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@types/node": "^20.12.12",
+    "node-fetch": "^3.3.2"
+  }
+}

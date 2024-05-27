@@ -41,6 +41,10 @@ const resRemoveSatellite = (name:string, planet:Planet) => {
     alert(`O satelite ${name} foi removido do planeta ${planet.name}`)
 }
 
+/*
+  prompt retorna uma string ou null se o usuário cancela a entrada. Como resultado, satellite pode potencialmente ser null. No entanto, ao usar !, você está dizendo ao compilador que tem certeza de que satellite não será null no momento em que o código for executado.
+*/
+
 const promptValidSituation = () => {
     let situation: PlanetSituation
     let validSituatio = false
