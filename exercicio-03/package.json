@@ -1,9 +1,10 @@
 {
   "name": "exercicio-02",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/githubUsers.js",
   "scripts": {
-    "build": "tsc --watch"
+    "start": "node dist/githubUsers.js",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

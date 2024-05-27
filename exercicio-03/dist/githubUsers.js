@@ -37,3 +37,4 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log(`Usuario nao encontrado ou ocorreu um erro`);
     }
 });
+main();

@@ -1,13 +1,6 @@
 import { error } from 'console';
 import fetch from 'node-fetch';
 
-/*
-     id (número)
-        login (string)
-        name (string)
-        public_repos (número)
-        repos_url (string)
-*/ 
 interface GitHubUsers {
     id: number,
     login: string
@@ -44,3 +37,5 @@ const main = async () => {
         console.log(`Usuario nao encontrado ou ocorreu um erro`)
     }
 }
+
+main()
