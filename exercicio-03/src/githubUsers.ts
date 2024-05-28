@@ -6,7 +6,7 @@ interface GitHubUsers {
     login: string
     name: string,
     public_repos: number,
-    repos_url: string
+    repos_url: string,
 }
 
 /*
