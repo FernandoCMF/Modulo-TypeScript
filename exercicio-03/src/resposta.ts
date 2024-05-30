@@ -1,3 +1,4 @@
+/* 
 interface GitHubUserResponse{
     id: number,
     login: string,
@@ -62,3 +63,5 @@ async function showUser(username:string) {
 
     }
 }
+
+*/

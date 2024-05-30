@@ -15,13 +15,13 @@ interface GitHubRepoResponse {
     stargazers_count: number
 }
 
-const AllUsers: GitHubUserResponse[] = [];
+const AllUsers: GitHubUsers[] = [];
 
 const getGitHubUser = async (username: string) => {
-    const response = await fetch(`https://api.github.com/users/${username}`)
-    const user = await response.json() // Esperando a resposta da api em JSON
-
     try {
+        const response = await fetch(`https://api.github.com/users/${username}`)
+        const user = await response.json() // Esperando a resposta da api em JSON
+       
         if (user.message) {
             console.log(`Usuario ${username} nao encontrado`)
         } else {
@@ -41,14 +41,15 @@ const getGitHubUser = async (username: string) => {
     }
 };
 
-const showAllUser = async (username:string) => {
-    const user = AllUsers.find(user => user.login === username)
+const showDataUser = async (username:string) => {
+    const user = await AllUsers.find(user => user.login === username)
 
     if(typeof user === 'undefined') {
-        console.log(`Usuario ${username} nao encontrado`)
+        console.log(`Usuario ${username} nao encontrado showDataUser`)
     }else {
         const response = await fetch(user.repos_url)
         const repos: GitHubRepoResponse[] = await response.json()
+        console.log(response)
 
         let message = `id: ${user.id}\n` +
         `\nlogin: ${user.login}` +
@@ -63,17 +64,37 @@ const showAllUser = async (username:string) => {
           `\nÉ um fork: ${repo.fork ? 'Sim' : 'Não'}\n`
       })
 
-      console.log(message)
+       console.log(message)
     }
 
 }
 
-const main = async () => {
-    const username = 'fernandoCMF'
-    const user = await getGitHubUser(username);
-   console.log(AllUsers)
+
+const showAllUsers = () => {
+    let Users = 'Todos os usuarios registrados \n'
+
+    AllUsers.forEach(user =>{
+        Users += `
+            Id: ${user.id}
+            Login: ${user.login}
+            Nome: ${user.name}
+            Bio: ${user.bio}
+            Repositórios públicos: ${user.public_repos}
+        `
+    })
+
+    console.log(Users)
     
-   
+}
+
+const main = async () => {
+    const username1 = 'fernandoCMF'
+    const username2 = 'WagnerRochaJ'
+    getGitHubUser(username1);
+    getGitHubUser(username2)
+    console.log('\n #### Mostrando todos registrados')
+    showAllUsers()
+
 }
 
 main()
