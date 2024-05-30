@@ -24,7 +24,6 @@ async function fetchUser(username:string) {
     if(user.message){
         console.log('Usuario nao encontrado')
     }else {
-
         users.push(user)
         console.log(
             `O usuário ${user.login} foi salvo.\n` +
