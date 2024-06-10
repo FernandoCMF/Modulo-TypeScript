@@ -48,21 +48,25 @@ const showAllUsers = () => {
     let Users = 'Todos os usuarios registrados \n';
     AllUsers.forEach(user => {
         Users += `
-            Id: ${user.id}
             Login: ${user.login}
             Nome: ${user.name}
-            Bio: ${user.bio}
-            Repositórios públicos: ${user.public_repos}
+
         `;
     });
     console.log(Users);
 };
+const sumTotalPublicRepos = () => {
+    const reposTotal = AllUsers.reduce((accumulator, user) => (accumulator + user.public_repos), 0);
+    console.log(`O grupo possui um total de ${reposTotal} repositórios públicos!`);
+};
 const main = async () => {
     const username1 = 'fernandoCMF';
     const username2 = 'WagnerRochaJ';
-    getGitHubUser(username1);
-    getGitHubUser(username2);
-    console.log('\n #### Mostrando todos registrados');
-    showAllUsers();
+    await getGitHubUser(username1);
+    await getGitHubUser(username2);
+    // console.log('\n #### Mostrando todos registrados')
+    console.log('\n #### Mostrando qtd total de repositorios publicos');
+    await sumTotalPublicRepos();
+    await showAllUsers();
 };
 main();
